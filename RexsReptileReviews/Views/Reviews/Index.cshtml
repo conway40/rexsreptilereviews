@@ -1,0 +1,148 @@
+﻿@model IEnumerable<RexsReptileReviews.Models.Review>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Reviews</h2>
+
+@using (Html.BeginForm())
+{
+	<div id="FilterSearch" class="form-horizontal">
+
+		<div class="form-group">
+			@Html.Label("Search by Title", htmlAttributes: new { @class = "control-label col-md-2" })
+			@Html.TextBox("searchCriteria", null, new { @class = "form-control" })
+		</div>
+
+		@*<div class="form-group">
+			@Html.Label("Filter by Experience Level", htmlAttributes: new { @class = "control-label col-md-2" })
+			@Html.DropDownList("ExperienceFilter", new SelectList(@ViewBag.ExperienceLevels), "All Experience Levels", new { @class = "form-control" })
+		</div>*@
+
+		<div class="form-group">
+			<input type="submit" value="Find Reviews" class="btn col-md-2 col-md-offset-2" />
+			<input type="button" value="Reset Reviews" onclick="location.href='@Url.Action("Index", "Reviews")'" class="btn col-md-2 col-md-offset-2" />
+		</div>
+
+	</div>
+}
+
+	<p>
+		<input type="button" value="Create a Review" onclick="location.href='@Url.Action("Create", "Reviews")'" class="btn btn-success" />
+	</p>
+<table class="table">
+	<tr>
+		@*<th>
+			@Html.DisplayNameFor(model => model.DateTime)
+		</th>*@
+		<th>
+			<button type="button" class="btn btn-default">
+				@Html.ActionLink(@Html.DisplayNameFor(model => model.Title).ToHtmlString(), "Index", new { sortOrder = "Title" })
+				<span class="glyphicon glyphicon-chevron-down"></span>
+			</button>
+		</th>
+		<th>
+			<button type="button" class="btn btn-default">
+				@Html.ActionLink(@Html.DisplayNameFor(model => model.Reptile).ToHtmlString(), "Index", new { sortOrder = "Reptile" })
+				<span class="glyphicon glyphicon-chevron-down"></span>
+			</button>
+		</th>
+		<th>
+			<button type="button" class="btn btn-default">
+				@Html.ActionLink(@Html.DisplayNameFor(model => model.Rating).ToHtmlString(), "Index", new { sortOrder = "Rating" })
+				<span class="glyphicon glyphicon-chevron-down"></span>
+			</button>
+		</th>
+		<th>
+			<button type="button" class="btn btn-default">
+				@Html.ActionLink(@Html.DisplayNameFor(model => model.ExperienceLevel).ToHtmlString(), "Index", new { sortOrder = "ExperienceLevel" })
+				<span class="glyphicon glyphicon-chevron-down"></span>
+			</button>
+		</th>
+		@*<th>
+			@Html.DisplayNameFor(model => model.Body)
+		</th>*@
+		<th>
+			<button type="button" class="btn btn-default">
+				@Html.ActionLink(@Html.DisplayNameFor(model => model.Author).ToHtmlString(), "Index", new { sortOrder = "Author" })
+				<span class="glyphicon glyphicon-chevron-down"></span>
+			</button>
+		</th>
+		<th></th>
+	</tr>
+
+@foreach (var item in Model) {
+	<tr>
+		@*<td>
+			@Html.DisplayFor(modelItem => item.DateTime)
+		</td>*@
+		<td>
+			@Html.ActionLink(@Html.DisplayFor(modelItem => item.Title).ToHtmlString(), "Details", new { id = item.Id })
+		</td>
+		<td>
+			@Html.DisplayFor(modelItem => item.Reptile)
+		</td>
+		<td>
+			@switch (item.Rating)
+		{
+			case 1:
+				<span class="glyphicon glyphicon-star"></span>
+				<span class="glyphicon glyphicon-star-empty"></span>
+				<span class="glyphicon glyphicon-star-empty"></span>
+				<span class="glyphicon glyphicon-star-empty"></span>
+				<span class="glyphicon glyphicon-star-empty"></span>
+			break;
+		case 2:
+			<span class="glyphicon glyphicon-star"></span>
+			<span class="glyphicon glyphicon-star"></span>
+			<span class="glyphicon glyphicon-star-empty"></span>
+			<span class="glyphicon glyphicon-star-empty"></span>
+			<span class="glyphicon glyphicon-star-empty"></span>
+		break;
+	case 3:
+		<span class="glyphicon glyphicon-star"></span>
+		<span class="glyphicon glyphicon-star"></span>
+		<span class="glyphicon glyphicon-star"></span>
+		<span class="glyphicon glyphicon-star-empty"></span>
+		<span class="glyphicon glyphicon-star-empty"></span>
+	break;
+case 4:
+	<span class="glyphicon glyphicon-star"></span>
+	<span class="glyphicon glyphicon-star"></span>
+	<span class="glyphicon glyphicon-star"></span>
+	<span class="glyphicon glyphicon-star"></span>
+	<span class="glyphicon glyphicon-star-empty"></span>
+break;
+case 5:
+	<span class="glyphicon glyphicon-star"></span>
+	<span class="glyphicon glyphicon-star"></span>
+	<span class="glyphicon glyphicon-star"></span>
+	<span class="glyphicon glyphicon-star"></span>
+	<span class="glyphicon glyphicon-star"></span>
+break;
+default:
+break;
+}
+
+		</td>
+		<td>
+			@Html.DisplayFor(modelItem => item.ExperienceLevel)
+		</td>
+
+		<td>
+			@Html.DisplayFor(modelItem => item.Author)
+		</td>
+
+		@*<td>
+			@Html.DisplayFor(modelItem => item.Body)
+		</td>*@
+		<td>
+			@*@Html.ActionLink("Read Review", "Details", new { id = item.Id }) |*@
+			<button class="btn btn-warning">@Html.ActionLink("Edit", "Edit", new { id = item.Id }) </button>
+			<button class="btn btn-danger">@Html.ActionLink("Delete", "Delete", new { id = item.Id }) </button>
+</td>
+	</tr>
+}
+
+</table>

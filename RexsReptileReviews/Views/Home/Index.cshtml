@@ -1,0 +1,52 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+	<img src="@Url.Content("~/images/header.png")" class="col-lg-12 jumbotron-image" />
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Who We Are</h2>
+		<p>
+			Our goal is to give first-time or experienced reptile owners information about any reptile that Rex's Roaring Reptiles sells and allow those reptile owners to leave reviews about pets they have owned. 
+		</p>
+    </div>
+    <div class="col-md-4">
+        <h2>Find Your Next Pet</h2>
+		<p>
+			We strive to provide reptile enthusiasts with greater knowledge of a reptile they might want to get and empower them to make an informed purchase.
+		</p>
+		<p>
+			<button class="btn">@Html.ActionLink("Read Reviews", "Index", "Reviews")</button>
+		</p>
+    </div>
+    <div class="col-md-4">
+        <h2>Leave a Review</h2>
+		<p>
+			Login to leave a review about a reptile you have owned to help others know whether it is the right animal for them.
+		</p>
+        <p>
+			<button class="btn">@Html.ActionLink("Write a Review","Create","Reviews")</button>
+		</p>
+    </div>
+</div>
+<hr />
+<h3 style="text-align:center;">New or returning user?</h3>
+<br />
+<div class="row">
+	<div class="col-md-1">
+
+	</div>
+	<div class="col-md-5">
+		<button class="btn btn-primary btn-lg btn-block" type="button">@Html.ActionLink("Register", "Register", "Account")</button>
+	</div>
+	<div class="col-md-5">
+		<button class="btn btn-primary btn-lg btn-block" type="button">@Html.ActionLink("Login", "Login", "Account")</button>
+	</div>
+	<div class="col-md-1">
+
+	</div>
+</div>
+<br />
